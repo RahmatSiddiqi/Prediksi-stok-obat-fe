@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            height: 100vh;
+            background-color: #ffffff;
+            padding-top: 20px;
+        }
+        .sidebar .nav-link {
+            color: #6c757d;
+            padding: 10px 20px;
+        }
+        .sidebar .nav-link.active {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .stat-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .stat-card .icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .chart-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-2 d-none d-md-block sidebar">
+                <div class="position-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="fa-solid fa-house-chimney-medical"></i> Prediksi Stok Obat
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
+            <main class="col-md-10 ms-sm-auto px-md-4 main-content">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+                    <h1 class="h2">Prediksi Stock Obat</h1>
+                </div>
+
+                <!-- Form input -->
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="d-flex align-items-center">
+                            <select id="kd_obat" class="form-select">
+                                <option value="" selected>Pilih Obat</option>
+                                <option value="10404273">LESIPAR 300 TAB</option>
+                                <option value="10404302">METRONIDAZOL TAB 500MG</option>
+                                <option value="1020410">ALPRAZOLAM TAB 1MG</option>
+                                <option value="10404267">LANSOPRAZOL KAPS 30MG</option>
+                                <option value="10404176">DIGOKSIN TAB 0.25MG</option>
+                                <option value="1020414">MERLOPAM TAB 2MG (Lorazepam)</option>
+                                <option value="10404320">NIFEDIFIN TAB 10MG</option>
+                                <option value="10404374">RAMIPRIL TAB 2,5 MG</option>
+                                <option value="1030423">AMITRIPTILIN TAB 25 MG</option>
+                                <option value="1030424">ARKINE TAB 2MG (Triheksifenidil)</option>
+                                <option value="101041">KODEIN TAB 10MG</option>
+                                <option value="102049">ALPRAZOLAM TAB 0.5MG</option>
+                                <option value="10404100">SEFIKSIM TAB 100MG</option>
+                                <option value="10404341">PARASETAMOL TAB 500MG</option>
+                                <option value="10404372">RAMIPRIL TAB 5MG</option>
+                                <option value="10404102">SEFIKSIM TAB 200MG</option>
+                                <option value="10404375">RANITIDIN TAB 150MG</option>
+                                <option value="10404110">NATRIUM BIKARBONAT (BICNAT)</option>
+                                <option value="10404111">MISOPROSTOL 200MCG</option>
+                                <option value="10404132">SETIRIZIN TAB 10MG</option>
+                                <option value="10404139">SIPROFLOKSASIN TAB 500MG</option>
+                                <option value="10404152">KLOPIDOGREL TAB 75MG</option>
+                                <option value="10404245">ISOSORBID DINITRAT (ISDN) TAB 5MG</option>
+                                <option value="10404292">METFORMIN HCL TABLET 500MG</option>
+                                <option value="10404295">METILPREDNISOLON TAB 4MG</option>
+                                <option value="10404312">NATRIUM DIKLOFENAK TAB 50MG</option>
+                                <option value="10404363">STIMOX KAPS</option>
+                                <option value="10404212">FUROSEMID TAB 40MG</option>
+                                <option value="10404214">GABAPENTIN TAB 300MG</option>
+                                <option value="10404318">NEUROHAX TAB (Vitamin B-Kompleks)</option>
+                            </select>                            
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex align-items-center">
+                            <select id="bulan" class="form-select">
+                                <option value="" selected>Pilih Bulan</option>
+                                <option value="1">1 Bulan</option>
+                                <option value="2">2 Bulan</option>
+                                <option value="3">3 Bulan</option>
+                                <option value="4">4 Bulan</option>
+                                <option value="5">5 Bulan</option>
+                                <option value="6">6 Bulan</option>
+                                <option value="7">7 Bulan</option>
+                                <option value="8">8 Bulan</option>
+                                <option value="9">9 Bulan</option>
+                                <option value="10">10 Bulan</option>
+                                <option value="11">11 Bulan</option>
+                                <option value="12">12 Bulan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="d-flex align-items-center">
+                            <button type="button" class="btn btn-primary validate_submit">Prediksi</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Download PDF Button -->
+                <button id="downloadPdf" class="btn btn-success" style="display: none;">Download PDF</button>
+                <br>
+                <!-- Result -->
+                <div id="result" class="mb-4"></div>
+                <!-- Chart Buttons -->
+                <div id="chartButtons" class="d-flex" style="display: none;">
+                    <button type="button" class="btn btn-primary me-2 show-line-chart">Tampilkan Line Chart</button>
+                    <button type="button" class="btn btn-primary show-bar-chart">Tampilkan Bar Chart</button>
+                </div>
+                <!-- Chart Container -->
+                <canvas id="lineChart" style="display: none; max-width: 100%;"></canvas>
+                <canvas id="barChart" style="display: none; max-width: 100%;"></canvas>
+
+                
+            </main>
+        </div>
+    </div>
+
+    <!-- Include libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.18/jspdf.plugin.autotable.min.js"></script>
+
+    <script>
+        // Include the JavaScript logic here
+        let lineChart = null;
+        let barChart = null;
+
+        document.querySelector('.validate_submit').addEventListener('click', function () {
+            const obatValue = document.getElementById('kd_obat').value;
+            const bulanValue = document.getElementById('bulan').value;
+
+            // Validasi input
+            if (!obatValue || !bulanValue) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Input Tidak Valid',
+                    text: 'Kode obat dan bulan tidak boleh kosong!'
+                });
+                return;
+            }
+
+            Swal.fire({
+                title: 'Mohon tunggu sebentar...',
+                text: 'Proses prediksi sedang berjalan',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+
+            fetch('http://127.0.0.1:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    code: obatValue,
+                    n_months: bulanValue
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultElement = document.getElementById('result');
+                resultElement.innerHTML = '';
+
+                const table = document.createElement('table');
+                table.classList.add('table', 'table-striped');
+
+                const thead = document.createElement('thead');
+                thead.classList.add('table-dark');
+                const headerRow = document.createElement('tr');
+                ['No', 'Tanggal', 'Prediksi'].forEach(text => {
+                    const th = document.createElement('th');
+                    th.innerText = text;
+                    headerRow.appendChild(th);
+                });
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+
+                const tbody = document.createElement('tbody');
+                Object.entries(data).forEach(([date, prediction], index) => {
+                    const row = document.createElement('tr');
+                    [index + 1, date, `${Math.round(prediction)} tablet`].forEach(text => {
+                        const td = document.createElement('td');
+                        td.innerText = text;
+                        row.appendChild(td);
+                    });
+                    tbody.appendChild(row);
+                });
+
+                table.appendChild(tbody);
+                resultElement.appendChild(table);
+
+                document.getElementById('chartButtons').style.display = 'flex';
+
+                const labels = Object.keys(data);
+                const predictions = Object.values(data).map(prediction => Math.round(prediction));
+
+                if (lineChart) lineChart.destroy();
+                if (barChart) barChart.destroy();
+
+                const lineChartCtx = document.getElementById('lineChart').getContext('2d');
+                lineChart = new Chart(lineChartCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Prediksi',
+                            data: predictions,
+                            borderColor: 'rgb(255, 125, 41)',
+                            borderWidth: 1,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: { display: true, title: { display: true, text: 'Tanggal' } },
+                            y: { display: true, title: { display: true, text: 'Prediksi' }, beginAtZero: true }
+                        }
+                    }
+                });
+
+                const barChartCtx = document.getElementById('barChart').getContext('2d');
+                barChart = new Chart(barChartCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Prediksi',
+                            data: predictions,
+                            backgroundColor: 'rgb(255, 125, 41)',
+                            borderColor: 'rgb(21, 21, 21)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: { display: true, title: { display: true, text: 'Tanggal' } },
+                            y: { display: true, title: { display: true, text: 'Prediksi' }, beginAtZero: true }
+                        }
+                    }
+                });
+
+                document.getElementById('downloadPdf').style.display = 'block';
+
+                Swal.close();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Terjadi Kesalahan',
+                    text: 'Prediksi gagal dijalankan. Coba lagi nanti.'
+                });
+            });
+        });
+
+        document.querySelector('.show-line-chart').addEventListener('click', function () {
+            document.getElementById('lineChart').style.display = 'block';
+            document.getElementById('barChart').style.display = 'none';
+        });
+
+        document.querySelector('.show-bar-chart').addEventListener('click', function () {
+            document.getElementById('barChart').style.display = 'block';
+            document.getElementById('lineChart').style.display = 'none';
+        });
+
+        document.getElementById('downloadPdf').addEventListener('click', function() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Ambil nama obat dari teks opsi terpilih
+        const obatSelect = document.getElementById('kd_obat');
+        const namaObat = obatSelect.options[obatSelect.selectedIndex].text;
+
+        // Tambahkan logo (pastikan path gambar benar atau gunakan Base64)
+        doc.addImage('gambar/Lambang_Kabupaten_Aceh_Tamiang.jpeg', 'PNG', 10, 10, 30, 30);
+
+        // Tambahkan judul dan informasi instansi
+        doc.setFontSize(16);
+        doc.text("PEMERINTAHAN KABUPATEN ACEH TAMIANG", 105, 20, null, null, 'center');
+        doc.setFontSize(14);
+        doc.text("RUMAH SAKIT UMUM DAERAH", 105, 30, null, null, 'center');
+        doc.setFontSize(10);
+        doc.text("Jl.Rumah Sakit Kec.Karang Baru Kode Pos 24476 Aceh Tamiang Aceh", 105, 40, null, null, 'center');
+        doc.text("IGD:0641-32115 Fax:0641-332983", 105, 45, null, null, 'center');
+        doc.text("E-mail : rsud@acehtamiangkab.go.id, Website :", 105, 50, null, null, 'center');
+
+        // Tambahkan garis pemisah
+        doc.line(10, 55, 200, 55);
+
+        // Tambahkan informasi prediksi
+        doc.setFontSize(12);
+        doc.text(`Kode Obat     : ${obatSelect.value}`, 20, 70);
+        doc.text(`Nama Obat    : ${namaObat}`, 20, 80);
+        doc.text(`Jumlah Bulan : ${document.getElementById('bulan').value} Bulan`, 20, 90);
+
+        doc.text(`Berikut ini adalah rincian kebutuhan stok untuk waktu mendatang:`, 20, 100);
+
+        // Tambahkan tabel hasil prediksi
+        const resultTable = document.querySelector('#result table');
+        const headers = ['No', 'Tanggal', 'Prediksi'];
+        const rows = Array.from(resultTable.querySelectorAll('tbody tr')).map(row => 
+            Array.from(row.cells).map(cell => cell.textContent)
+        );
+
+        doc.autoTable({
+            head: [headers],
+            body: rows,
+            startY: 110,
+        });
+
+        // Tambahkan footer
+        const pageCount = doc.internal.getNumberOfPages();
+        for(let i = 1; i <= pageCount; i++) {
+            doc.setPage(i);
+            doc.setFontSize(10);
+            doc.text('ACEH TAMIANG ' + new Date().toLocaleDateString('id-ID'), 20, doc.internal.pageSize.height - 10);
+            doc.text(`Halaman ${i} dari ${pageCount}`, doc.internal.pageSize.width - 40, doc.internal.pageSize.height - 10);
+        }
+
+        // Simpan PDF
+        doc.save("hasil_prediksi_obat.pdf");
+    });
+    </script>
+</body>
+</html>
